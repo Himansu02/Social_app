@@ -101,12 +101,11 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const socket = io("https://socail-app-api.vercel.app/", {
-      path: "/socket.io",
-      transports: ["websocket"],
-      secure: true,
-    });
+    const socket = io("https://socail-app-api.vercel.app/");
     dispatch(getCurrentSocket(socket));
+    return ()=>{
+      socket?.disconnect()
+    }
   }, []);
 
   const socket = useSelector((state) => state.socket.socket);
