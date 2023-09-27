@@ -71,7 +71,7 @@ const NewPost = ({ closeModal }) => {
       setLoad(true);
 
       if (selectedImages.length > 0) {
-        console.log("working")
+        console.log("working");
         const totalImages = selectedImages.length;
         let overallProgress = 0;
         let uploadedFiles = 0;
@@ -133,12 +133,12 @@ const NewPost = ({ closeModal }) => {
                   const sentPostData = async () => {
                     try {
                       const res = await axios.post(
-                        "https://socail-app-api.vercel.app/post",
+                        "https://social-app-backend-idrz.onrender.com/post",
                         postData
                       );
                       dispatch(addPost(res.data));
                       const data = await axios.put(
-                        `https://socail-app-api.vercel.app/user/update/${user.id}/media`,
+                        `https://social-app-backend-idrz.onrender.com/user/update/${user.id}/media`,
                         postData.image
                       );
                       console.log(data.data);
@@ -156,7 +156,7 @@ const NewPost = ({ closeModal }) => {
         }
       } else {
         const res = await axios.post(
-          "https://socail-app-api.vercel.app/post",
+          "https://social-app-backend-idrz.onrender.com/post",
           postData
         );
         dispatch(addPost(res.data));
@@ -172,12 +172,18 @@ const NewPost = ({ closeModal }) => {
         <div className={styles.imgContainer}>
           <img className={styles.img} src={user.imageUrl} alt="" />
         </div>
-        <div style={{display:"flex",justifyContent:"space-between",width:"100%"}}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
+        >
           <div className={styles.userInfo}>
             <p className={styles.displayName}>{user.fullName}</p>
             <p className={styles.username}>@{user.username}</p>
           </div>
-          <Close onClick={()=>closeModal()}/>
+          <Close onClick={() => closeModal()} />
         </div>
       </div>
       <div className={styles.inputArea}>

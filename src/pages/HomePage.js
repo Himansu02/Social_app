@@ -45,7 +45,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(
-        `https://socail-app-api.vercel.app/user/${user.id}`
+        `https://social-app-backend-idrz.onrender.com/user/${user.id}`
       );
       dispatch(getCurrentUser(res.data));
     };
@@ -91,9 +91,9 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [prevScrollPos, visible]);
 
@@ -165,11 +165,7 @@ const HomePage = () => {
           Post
         </button>
       </div>
-      <Modal
-        onClose={handleClose}
-        open={open}
-        className={styles.test}
-      >
+      <Modal onClose={handleClose} open={open} className={styles.test}>
         <div className={styles.modalContainer}>
           {openPost && <NewPost closeModal={handleClose} />}
           {openSearch && <SearchContainer clickHandler={handleClose} />}
@@ -196,7 +192,11 @@ const HomePage = () => {
           {openChat && <Conversation />}
         </Suspense>
       </div>
-      <div className={`${styles.bottomNavbar} ${visible ? styles.visible : styles.hidden}`}>
+      <div
+        className={`${styles.bottomNavbar} ${
+          visible ? styles.visible : styles.hidden
+        }`}
+      >
         <UserButton />
         {navigationLinks.map((link, index) => (
           <div key={index}>

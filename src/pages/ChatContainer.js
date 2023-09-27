@@ -38,7 +38,7 @@ const ChatContainer = () => {
       const getConversationList = async () => {
         try {
           const res = await axios.get(
-            `https://socail-app-api.vercel.app/conversation/${user.id}`
+            `https://social-app-backend-idrz.onrender.com/conversation/${user.id}`
           );
           dispatch(getList(res.data));
           setIsLoading(false);

@@ -86,7 +86,9 @@ const Post = () => {
 
   useEffect(() => {
     const getAllUsers = async () => {
-      const res = await axios.get("https://socail-app-api.vercel.app/user");
+      const res = await axios.get(
+        "https://social-app-backend-idrz.onrender.com/user"
+      );
       setAllUsers(res.data);
     };
     getAllUsers();
@@ -96,7 +98,7 @@ const Post = () => {
     if (postId) {
       const getPostData = async () => {
         const res = await axios.get(
-          `https://socail-app-api.vercel.app/post/${postId}`
+          `https://social-app-backend-idrz.onrender.com/post/${postId}`
         );
         setPost(res.data);
         setLiked(res.data.like.includes(user.id));
@@ -128,7 +130,7 @@ const Post = () => {
     const getPostComment = async () => {
       try {
         const res = await axios.get(
-          `https://socail-app-api.vercel.app/comment/${postId}?page=${page}&limit=${postsPerPage}`
+          `https://social-app-backend-idrz.onrender.com/comment/${postId}?page=${page}&limit=${postsPerPage}`
         );
         if (res.data.length === 0) {
           setHasMore(false); // No more posts to load
@@ -200,7 +202,7 @@ const Post = () => {
       setLiked(!liked);
       try {
         const res = await axios.put(
-          `https://socail-app-api.vercel.app/post/${postId}/like`,
+          `https://social-app-backend-idrz.onrender.com/post/${postId}/like`,
           { userId: user.id }
         );
       } catch (err) {
@@ -209,7 +211,7 @@ const Post = () => {
 
       try {
         const res = await axios.post(
-          `https://socail-app-api.vercel.app/notification`,
+          `https://social-app-backend-idrz.onrender.com/notification`,
           notification
         );
       } catch (err) {
@@ -227,14 +229,14 @@ const Post = () => {
 
       try {
         const res = await axios.put(
-          `https://socail-app-api.vercel.app/post/${postId}/unlike`,
+          `https://social-app-backend-idrz.onrender.com/post/${postId}/unlike`,
           { userId: user.id }
         );
       } catch (err) {}
 
       try {
         const res = await axios.delete(
-          `https://socail-app-api.vercel.app/notification`,
+          `https://social-app-backend-idrz.onrender.com/notification`,
           notification
         );
       } catch (err) {
@@ -259,7 +261,7 @@ const Post = () => {
 
       try {
         const res = await axios.post(
-          "https://socail-app-api.vercel.app/comment",
+          "https://social-app-backend-idrz.onrender.com/comment",
           newComment
         );
 
@@ -287,7 +289,7 @@ const Post = () => {
 
         try {
           const res = await axios.post(
-            `https://socail-app-api.vercel.app/notification/`,
+            `https://social-app-backend-idrz.onrender.com/notification/`,
             notification
           );
         } catch (err) {
@@ -521,14 +523,8 @@ const Post = () => {
           </div>
         )}
       </div>
-      <Modal
-        onClose={handleClose}
-        open={open}
-        className={styles.test}
-      >
-        
-          <UserLikeModal array={postLikes} />
-        
+      <Modal onClose={handleClose} open={open} className={styles.test}>
+        <UserLikeModal array={postLikes} />
       </Modal>
     </div>
   );

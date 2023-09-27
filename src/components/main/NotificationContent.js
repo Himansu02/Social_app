@@ -18,10 +18,10 @@ const NotificationContent = ({ notification, deleteHandler }) => {
   useEffect(() => {
     const getSender = async () => {
       const res = await axios.get(
-        `https://socail-app-api.vercel.app/user/${notification.senderId}`
+        `https://social-app-backend-idrz.onrender.com/user/${notification.senderId}`
       );
       setSender(res.data);
-      setIsLoading(false)
+      setIsLoading(false);
     };
     getSender();
   }, [notification.senderId]);
@@ -72,7 +72,7 @@ const NotificationContent = ({ notification, deleteHandler }) => {
   const handleMessageDelete = async () => {
     try {
       const res = await axios.delete(
-        `https://socail-app-api.vercel.app/notification/one/${notification?._id}`
+        `https://social-app-backend-idrz.onrender.com/notification/one/${notification?._id}`
       );
 
       deleteHandler(notification?._id);
@@ -157,7 +157,7 @@ const NotificationContent = ({ notification, deleteHandler }) => {
             width: "100%",
             display: "flex",
             justifyContent: "center",
-            padding:"20px"
+            padding: "20px",
           }}
         >
           <Spinner />

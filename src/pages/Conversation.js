@@ -33,13 +33,12 @@ const Conversation = (props) => {
   const messageContainerRef = useRef();
 
   const socket = useSelector((state) => state.socket.socket);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const handleClick = () => {
     dispatch(setCloseChat());
-    if(window.innerWidth<=768)
-    {
-      navigate("/chatBox")
+    if (window.innerWidth <= 768) {
+      navigate("/chatBox");
     }
   };
 
@@ -100,7 +99,7 @@ const Conversation = (props) => {
           const getConversation = async () => {
             try {
               const res = await axios.get(
-                `https://socail-app-api.vercel.app/conversation/one/${data.conversationId}`
+                `https://social-app-backend-idrz.onrender.com/conversation/one/${data.conversationId}`
               );
               dispatch(getNewConversation(res.data));
             } catch (err) {
@@ -163,7 +162,7 @@ const Conversation = (props) => {
 
     try {
       const res = await axios.post(
-        "https://socail-app-api.vercel.app/message",
+        "https://social-app-backend-idrz.onrender.com/message",
         newMessage
       );
       setConversationMessage((prev) => {
@@ -179,7 +178,7 @@ const Conversation = (props) => {
     const getConversationMessage = async () => {
       try {
         const res = await axios.get(
-          `https://socail-app-api.vercel.app/message/${conversationId}`
+          `https://social-app-backend-idrz.onrender.com/message/${conversationId}`
         );
         setConversationMessage(res.data);
         setIsLoading(false);

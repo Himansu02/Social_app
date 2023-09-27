@@ -11,7 +11,7 @@ const Comment = ({ comment, postId, postUser, deleteHandler }) => {
   const [liked, setLiked] = useState(false);
   const [commentLikes, setCommentLikes] = useState(comment.likes.length);
   const [isHovered, setIsHovered] = useState(false);
-  const [isLoading,setIsLoading]=useState(true)
+  const [isLoading, setIsLoading] = useState(true);
   console.log(postUser);
 
   const { user: currentUser } = useUser();
@@ -20,11 +20,11 @@ const Comment = ({ comment, postId, postUser, deleteHandler }) => {
     const getUser = async () => {
       try {
         const res = await axios.get(
-          `https://socail-app-api.vercel.app/user/${comment.senderId}`
+          `https://social-app-backend-idrz.onrender.com/user/${comment.senderId}`
         );
         setUser(res.data);
         setLiked(comment.likes.includes(currentUser.id));
-        setIsLoading(false)
+        setIsLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -48,7 +48,7 @@ const Comment = ({ comment, postId, postUser, deleteHandler }) => {
       setLiked(!liked);
       try {
         const res = await axios.put(
-          `https://socail-app-api.vercel.app/comment/${comment?._id}/like`,
+          `https://social-app-backend-idrz.onrender.com/comment/${comment?._id}/like`,
           {
             userId: currentUser.id,
             postId: postId,
@@ -64,7 +64,7 @@ const Comment = ({ comment, postId, postUser, deleteHandler }) => {
       setLiked(!liked);
       try {
         const res = await axios.put(
-          `https://socail-app-api.vercel.app/comment/${comment?._id}/unlike`,
+          `https://social-app-backend-idrz.onrender.com/comment/${comment?._id}/unlike`,
           {
             userId: currentUser.id,
             postId: postId,
@@ -80,7 +80,7 @@ const Comment = ({ comment, postId, postUser, deleteHandler }) => {
   const handleDelete = async () => {
     try {
       const res = await axios.delete(
-        `https://socail-app-api.vercel.app/comment/${comment._id}`
+        `https://social-app-backend-idrz.onrender.com/comment/${comment._id}`
       );
       deleteHandler(comment._id);
     } catch (err) {

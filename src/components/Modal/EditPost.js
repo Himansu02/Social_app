@@ -18,7 +18,7 @@ const EditPost = ({ postId, close }) => {
     if (postId) {
       const getPostData = async () => {
         const res = await axios.get(
-          `https://socail-app-api.vercel.app/post/${postId}`
+          `https://social-app-backend-idrz.onrender.com/post/${postId}`
         );
         setPost(res.data);
         setInputText(res.data.desc);
@@ -44,7 +44,7 @@ const EditPost = ({ postId, close }) => {
         image: images,
       };
       const res = await axios.put(
-        `https://socail-app-api.vercel.app/post/${postId}`,
+        `https://social-app-backend-idrz.onrender.com/post/${postId}`,
         updateData
       );
       dispatch(updatePost({ postId: postId, post: res.data }));
@@ -118,16 +118,10 @@ const EditPost = ({ postId, close }) => {
         </div>
       )}
       <div className={styles.buttonContainer}>
-        <button
-          className={styles.button}
-          onClick={handleClose}
-        >
+        <button className={styles.button} onClick={handleClose}>
           Cancel
         </button>
-        <button
-          className={styles.button}
-          onClick={handlePostUpdate}
-        >
+        <button className={styles.button} onClick={handlePostUpdate}>
           Done
         </button>
       </div>

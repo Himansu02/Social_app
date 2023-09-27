@@ -45,7 +45,7 @@ function QuotePost({ post }) {
   useEffect(() => {
     const getPostComment = async () => {
       const res = await axios.get(
-        `https://socail-app-api.vercel.app/comment/${post._id}`
+        `https://social-app-backend-idrz.onrender.com/comment/${post._id}`
       );
       setPostComments(res.data);
     };
@@ -85,7 +85,7 @@ function QuotePost({ post }) {
 
       try {
         const res = await axios.put(
-          `https://socail-app-api.vercel.app/post/${post?._id}/like`,
+          `https://social-app-backend-idrz.onrender.com/post/${post?._id}/like`,
           { userId: user.id, receverId: post?.postedBy.externalId }
         );
       } catch (err) {
@@ -101,7 +101,7 @@ function QuotePost({ post }) {
 
       try {
         const res = await axios.put(
-          `https://socail-app-api.vercel.app/post/${post?._id}/unlike`,
+          `https://social-app-backend-idrz.onrender.com/post/${post?._id}/unlike`,
           { userId: user.id, receverId: post?.postedBy.externalId }
         );
       } catch (err) {}
@@ -187,7 +187,11 @@ function QuotePost({ post }) {
 
       {post?.image.length > 0 && (
         <div className={styles.postedImageContainer}>
-          <CarouselComponent height={window.innerWidth<=768?550:680} size={window.innerWidth<=768?window.innerWidth-100:728} images={post?.image} />
+          <CarouselComponent
+            height={window.innerWidth <= 768 ? 550 : 680}
+            size={window.innerWidth <= 768 ? window.innerWidth - 100 : 728}
+            images={post?.image}
+          />
         </div>
       )}
 
@@ -270,11 +274,7 @@ function QuotePost({ post }) {
           )}
         </div>
       )}
-      <Modal
-        onClose={handleClose}
-        open={open}
-        className={styles.test}
-      >
+      <Modal onClose={handleClose} open={open} className={styles.test}>
         <div style={{ outline: "none" }}>
           {openModal.edit && (
             <EditPost postId={post?._id} close={handleClose} />

@@ -24,7 +24,7 @@ function Timeline() {
     // Fetch initial posts
     const getPost = async () => {
       const res = await axios.get(
-        `https://socail-app-api.vercel.app/post?page=${page}&limit=${postsPerPage}`
+        `https://social-app-backend-idrz.onrender.com/post?page=${page}&limit=${postsPerPage}`
       );
       if (res.data.length === 0) {
         setHasMore(false); // No more posts to load

@@ -11,10 +11,10 @@ const OnlieUsers = ({ userId }) => {
     const getUserDetails = async () => {
       try {
         const res = await axios.get(
-          `https://socail-app-api.vercel.app/user/${userId}`
+          `https://social-app-backend-idrz.onrender.com/user/${userId}`
         );
         setUser(res.data);
-        setIsLoading(false)
+        setIsLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -23,17 +23,17 @@ const OnlieUsers = ({ userId }) => {
   }, [userId]);
 
   return (
-        <div className={styles.container}>
-         {!isLoading &&  <>
+    <div className={styles.container}>
+      {!isLoading && (
+        <>
           <div className={styles.imgContainer}>
             <img className={styles.img} src={user?.profile_img} alt="" />
           </div>
           <div className={styles.greenDotContainer}></div>
-          </>}
-          {isLoading && (
-              <Spinner />
-          )}
-        </div>
+        </>
+      )}
+      {isLoading && <Spinner />}
+    </div>
   );
 };
 

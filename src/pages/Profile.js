@@ -79,7 +79,7 @@ const Profile = () => {
       const getUserData = async () => {
         try {
           const res = await axios.get(
-            `https://socail-app-api.vercel.app/user/${userId}`
+            `https://social-app-backend-idrz.onrender.com/user/${userId}`
           );
 
           setProfileUser(res.data);
@@ -101,7 +101,7 @@ const Profile = () => {
     const getTimelinePost = async () => {
       try {
         const res = await axios.get(
-          `https://socail-app-api.vercel.app/post/timeline/${userId}?page=${page}&limit=${postsPerPage}`
+          `https://social-app-backend-idrz.onrender.com/post/timeline/${userId}?page=${page}&limit=${postsPerPage}`
         );
         if (res.data.length === 0) {
           setHasMore(false); // No more posts to load
@@ -119,7 +119,7 @@ const Profile = () => {
   const handleStartChat = async () => {
     try {
       const res = await axios.post(
-        "https://socail-app-api.vercel.app/conversation",
+        "https://social-app-backend-idrz.onrender.com/conversation",
         {
           senderId: user.id,
           receiverId: userId,
@@ -134,7 +134,7 @@ const Profile = () => {
         };
         dispatch(getNewConversation(res.data.conversation));
         const data = await axios.post(
-          "https://socail-app-api.vercel.app/message/",
+          "https://social-app-backend-idrz.onrender.com/message/",
           newMessage
         );
 

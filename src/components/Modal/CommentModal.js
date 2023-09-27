@@ -28,7 +28,7 @@ const CommentModal = ({ postId, closeModal }) => {
     const getPostComment = async () => {
       try {
         const res = await axios.get(
-          `https://socail-app-api.vercel.app/comment/${postId}`
+          `https://social-app-backend-idrz.onrender.com/comment/${postId}`
         );
         setPostComments(res.data);
         setIsLoading(false);
@@ -43,7 +43,7 @@ const CommentModal = ({ postId, closeModal }) => {
     if (postId) {
       const getPostData = async () => {
         const res = await axios.get(
-          `https://socail-app-api.vercel.app/post/${postId}`
+          `https://social-app-backend-idrz.onrender.com/post/${postId}`
         );
         setPost(res.data);
       };
@@ -63,7 +63,7 @@ const CommentModal = ({ postId, closeModal }) => {
 
       try {
         const res = await axios.post(
-          "https://socail-app-api.vercel.app/comment",
+          "https://social-app-backend-idrz.onrender.com/comment",
           newComment
         );
 
@@ -91,7 +91,7 @@ const CommentModal = ({ postId, closeModal }) => {
 
         try {
           const res = await axios.post(
-            `https://socail-app-api.vercel.app/notification/`,
+            `https://social-app-backend-idrz.onrender.com/notification/`,
             notification
           );
         } catch (err) {

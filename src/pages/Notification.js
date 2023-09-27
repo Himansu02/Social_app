@@ -25,7 +25,7 @@ const Notification = () => {
     const getNotification = async () => {
       try {
         const res = await axios.get(
-          `https://socail-app-api.vercel.app/notification/${id}?page=${page}&limit=${postsPerPage}`
+          `https://social-app-backend-idrz.onrender.com/notification/${id}?page=${page}&limit=${postsPerPage}`
         );
         console.log(res.data);
         if (res.data.length === 0) {

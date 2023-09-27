@@ -16,7 +16,7 @@ const SharedConversation = ({ conversationUserId, id, postId }) => {
   const conversationId = useSelector((state) => state.chat.conversationId);
   const [isLoading, setIsLoading] = useState(true);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleClick = async () => {
     const data = {
@@ -34,7 +34,7 @@ const SharedConversation = ({ conversationUserId, id, postId }) => {
 
     try {
       const res = await axios.post(
-        "https://socail-app-api.vercel.app/message",
+        "https://social-app-backend-idrz.onrender.com/message",
         data
       );
       if (!openChat) {
@@ -45,9 +45,8 @@ const SharedConversation = ({ conversationUserId, id, postId }) => {
             conversationUser: conversationUser,
           })
         );
-        if(window.innerWidth<=768)
-        {
-          navigate(`/chatBox/${id}`)
+        if (window.innerWidth <= 768) {
+          navigate(`/chatBox/${id}`);
         }
       } else if (openChat && id === conversationId) {
         dispatch(getSharePost(res.data));
@@ -61,10 +60,10 @@ const SharedConversation = ({ conversationUserId, id, postId }) => {
     const getConversationUser = async () => {
       try {
         const res = await axios.get(
-          `https://socail-app-api.vercel.app/user/${conversationUserId}`
+          `https://social-app-backend-idrz.onrender.com/user/${conversationUserId}`
         );
         setConversationUser(res.data);
-        setIsLoading(false)
+        setIsLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -73,20 +72,22 @@ const SharedConversation = ({ conversationUserId, id, postId }) => {
   }, [conversationUserId]);
   return (
     <>
-      {!isLoading && <div className={styles.container} onClick={handleClick}>
-        <div className={styles.postHeader}>
-          <div className={styles.imageContainer}>
-            <img
-              className={styles.profilePicture}
-              src={conversationUser?.profile_img}
-              alt="User Profile"
-            />
-          </div>
-          <div className={styles.userInfo}>
-            <p className={styles.displayName}>{conversationUser?.fullname}</p>
+      {!isLoading && (
+        <div className={styles.container} onClick={handleClick}>
+          <div className={styles.postHeader}>
+            <div className={styles.imageContainer}>
+              <img
+                className={styles.profilePicture}
+                src={conversationUser?.profile_img}
+                alt="User Profile"
+              />
+            </div>
+            <div className={styles.userInfo}>
+              <p className={styles.displayName}>{conversationUser?.fullname}</p>
+            </div>
           </div>
         </div>
-      </div>}
+      )}
       {isLoading && (
         <div
           style={{

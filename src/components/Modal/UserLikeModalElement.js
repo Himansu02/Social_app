@@ -11,10 +11,10 @@ const UserLikeModalElement = ({ id }) => {
   useEffect(() => {
     const getUser = async () => {
       const res = await axios.get(
-        `https://socail-app-api.vercel.app/user/${id}`
+        `https://social-app-backend-idrz.onrender.com/user/${id}`
       );
       setUser(res.data);
-      setIsLoading(false)
+      setIsLoading(false);
     };
     getUser();
   }, [id]);

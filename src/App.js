@@ -83,8 +83,8 @@ const router = createBrowserRouter(
 
         <Route path="/notifiaction/:id" element={<Notification />} />
 
-        <Route path="/chatBox" element={<ChatContainer />}/>
-        <Route path="/chatBox/:convId" element={<Conversation/>}/>
+        <Route path="/chatBox" element={<ChatContainer />} />
+        <Route path="/chatBox/:convId" element={<Conversation />} />
 
         <Route path="/post/:postId" element={<Post />} />
         <Route path="/post/:postId/:commentId" element={<Post />} />
@@ -101,12 +101,12 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const socket = io("https://socail-app-api.vercel.app");
-    // https://socail-app-api.vercel.app
+    const socket = io("https://social-app-backend-idrz.onrender.com");
+    // https://social-app-backend-idrz.onrender.com
     dispatch(getCurrentSocket(socket));
-    return ()=>{
-      socket?.disconnect()
-    }
+    return () => {
+      socket?.disconnect();
+    };
   }, []);
 
   const socket = useSelector((state) => state.socket.socket);

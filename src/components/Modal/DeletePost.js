@@ -9,7 +9,9 @@ const DeletePost = ({ postId, closeModal }) => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`https://socail-app-api.vercel.app/post/${postId}`);
+      await axios.delete(
+        `https://social-app-backend-idrz.onrender.com/post/${postId}`
+      );
       dispatch(deletePost({ postId }));
       closeModal();
     } catch (err) {

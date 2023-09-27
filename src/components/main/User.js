@@ -7,7 +7,6 @@ import { useUser } from "@clerk/clerk-react";
 import Spinner from "../UI/Spinner";
 import { useNavigate } from "react-router-dom";
 
-
 const User = ({ conversationUserId, id }) => {
   // console.log(conversation)
 
@@ -18,7 +17,7 @@ const User = ({ conversationUserId, id }) => {
   const [notificationMessage, setNotificationMessage] = useState(null);
   const [count, setCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const getNotifications = () => {
     const notification = notificationIds?.find((n) => n.id === id);
@@ -47,10 +46,9 @@ const User = ({ conversationUserId, id }) => {
         conversationUser: conversationUser,
       })
     );
-    
-    if(window.innerWidth<=768)
-    {
-      navigate(`/chatBox/${id}`)
+
+    if (window.innerWidth <= 768) {
+      navigate(`/chatBox/${id}`);
     }
   };
 
@@ -58,10 +56,10 @@ const User = ({ conversationUserId, id }) => {
     const getConversationUser = async () => {
       try {
         const res = await axios.get(
-          `https://socail-app-api.vercel.app/user/${conversationUserId}`
+          `https://social-app-backend-idrz.onrender.com/user/${conversationUserId}`
         );
         setConversationUser(res.data);
-        setIsLoading(false)
+        setIsLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -73,7 +71,7 @@ const User = ({ conversationUserId, id }) => {
     const getLastMessage = async () => {
       try {
         const res = await axios.get(
-          `https://socail-app-api.vercel.app/message/${id}/lastmessage`
+          `https://social-app-backend-idrz.onrender.com/message/${id}/lastmessage`
         );
         // console.log(res.data.sender);
         // console.log(user.id);

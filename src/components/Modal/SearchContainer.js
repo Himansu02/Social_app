@@ -13,7 +13,9 @@ const SearchContainer = ({ clickHandler }) => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await axios.get("https://socail-app-api.vercel.app/user");
+        const res = await axios.get(
+          "https://social-app-backend-idrz.onrender.com/user"
+        );
         console.log(res);
 
         setImaginaryArray(res.data);

@@ -14,7 +14,7 @@ import Loader from "../UI/Loader";
 import { useDispatch } from "react-redux";
 import { updateCurrentUser } from "../redux/userReducer";
 
-const EditProfile = ({ user,handleClose }) => {
+const EditProfile = ({ user, handleClose }) => {
   // console.log(user)
   const [uploadProgress, setUploadProgress] = useState(0);
   const [load, setLoad] = useState(false);
@@ -140,7 +140,7 @@ const EditProfile = ({ user,handleClose }) => {
             const updateUser = async () => {
               try {
                 const res = await axios.put(
-                  `https://socail-app-api.vercel.app/user/update/${user?.externalId}`,
+                  `https://social-app-backend-idrz.onrender.com/user/update/${user?.externalId}`,
                   { ...updatedUser, cover_img: downloadURL }
                 );
                 dispatch(updateCurrentUser(res.data));
@@ -166,7 +166,7 @@ const EditProfile = ({ user,handleClose }) => {
         try {
           console.log("working");
           const res = await axios.put(
-            `https://socail-app-api.vercel.app/user/update/${user?.externalId}`,
+            `https://social-app-backend-idrz.onrender.com/user/update/${user?.externalId}`,
             updatedUser
           );
           dispatch(updateCurrentUser(res.data));
@@ -185,9 +185,15 @@ const EditProfile = ({ user,handleClose }) => {
 
   return (
     <div className={styles.container}>
-      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
         <h1>Edit Profile</h1>
-        <Close onClick={()=>handleClose()}/>
+        <Close onClick={() => handleClose()} />
       </div>
 
       <div className={styles.imageInputContainer}>
