@@ -102,6 +102,7 @@ function App() {
 
   useEffect(() => {
     const socket = io("https://socail-app-api.vercel.app");
+    // https://socail-app-api.vercel.app
     dispatch(getCurrentSocket(socket));
     return ()=>{
       socket?.disconnect()
